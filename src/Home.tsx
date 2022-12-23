@@ -1,34 +1,21 @@
 import { Link } from "react-router-dom";
+import { styled } from "classname-variants/react";
 
 import CounterIsland from "./Counter.island.jsx";
-import ExpandableIsland from "./Expandable.island.jsx";
-import MediaQueryIsland from "./MediaQuery.island.jsx";
-import { ServerContent } from "./ServerContent";
 
 export function Home() {
   return (
-    <main>
-      <h1>
+    <main className="flex flex-col gap-3 max-w-prose mx-auto my-10">
+      <h1 className="font-bold text-lg">
         Partial hydration with React and <i>Capri</i>
       </h1>
       <section>This page is static, but contains some dynamic parts.</section>
-      <section>
+      <section className="flex gap-2">
         Here is a simple counter: <CounterIsland />
       </section>
-      <section>
-        And here is another one, independent from the one above:{" "}
-        <CounterIsland start={100} />
-      </section>
-      <ExpandableIsland title="Click to expand">
-        This island receives children as prop. They are only rendered upon build
-        time.
-        <ServerContent>
-          The code for <code>ServerContent</code> won't show up in the client
-          bundle.
-        </ServerContent>
-      </ExpandableIsland>
-      <MediaQueryIsland />
-      <Link to="/about">Link to another page</Link>
+      <A to="/about">Link to another page</A>
     </main>
   );
 }
+
+const A = styled(Link, "underline hover:text-green-500");
